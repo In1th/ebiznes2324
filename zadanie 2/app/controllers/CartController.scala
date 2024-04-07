@@ -62,7 +62,7 @@ class CartController @Inject()(val controllerComponents: ControllerComponents) e
   def update(id: Long): Action[AnyContent] = Action { implicit request =>
     val foundCart = carts.find(_.id == id)
     foundCart match {
-      case Some(product) =>
+      case Some(cart) =>
         val jsonBody = request.body.asJson
         val cartJson: Option[CartDto] = jsonBody.flatMap(
           Json.fromJson[CartDto](_).asOpt
@@ -70,7 +70,7 @@ class CartController @Inject()(val controllerComponents: ControllerComponents) e
 
         cartJson match {
           case Some(crtDto) =>
-            carts -= product
+            carts -= cart
             val newCart = Cart(id, crtDto.productId, crtDto.quantity)
             carts += newCart
             Ok(Json.toJson(newCart))

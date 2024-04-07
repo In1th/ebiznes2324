@@ -1,6 +1,6 @@
 package controllers
 
-import models.{Product, ProductDto}
+import models.{Category, CategoryDto}
 import play.api.libs.json.{Json, OFormat}
 import play.api.mvc._
 
@@ -14,66 +14,66 @@ import scala.collection.mutable.ListBuffer
 @Singleton
 class CategoryController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
 
-  private val products = ListBuffer[Product]()
+  private val categories = ListBuffer[Category]()
 
-  products += new Product(1, "banana", 1, 50, 2.22f)
-  products += new Product(2, "apple", 1, 2, 5.99f)
+  categories += new Category(1, "cat1", "category 1")
+  categories += new Category(2, "cat2", "category 2")
 
-  implicit val productFormat: OFormat[Product] = Json.format[Product]
-  implicit val productDtoFormat: OFormat[ProductDto] = Json.format[ProductDto]
+  implicit val categoryFormat: OFormat[Category] = Json.format[Category]
+  implicit val categoryDtoFormat: OFormat[CategoryDto] = Json.format[CategoryDto]
 
   def add(): Action[AnyContent] = Action { implicit request =>
     val jsonBody = request.body.asJson
-    val newProducts = jsonBody.flatMap(
-      Json.fromJson[ProductDto](_).asOpt
+    val newCategory = jsonBody.flatMap(
+      Json.fromJson[CategoryDto](_).asOpt
     )
 
-    newProducts match {
-      case Some(productDto) =>
+    newCategory match {
+      case Some(catDto) =>
         var nextId: Long = 1
-        if (products.nonEmpty) {
-          nextId = products.map(_.id).max + 1
+        if (categories.nonEmpty) {
+          nextId = categories.map(_.id).max + 1
         }
-        val newProduct = Product(nextId, productDto.name, productDto.quantity, productDto.quantity, productDto.price)
-        products += newProduct
-        Created(Json.toJson(newProduct))
+        val newCategory = Category(nextId, catDto.name, catDto.description)
+        categories += newCategory
+        Created(Json.toJson(newCategory))
       case None =>
         BadRequest
     }
   }
 
   def showById(id: Long): Action[AnyContent] = Action { implicit request =>
-    val foundProduct = products.find(_.id == id)
-    foundProduct match {
-      case Some(product) => Ok(Json.toJson(product))
+    val foundCategory = categories.find(_.id == id)
+    foundCategory match {
+      case Some(cat) => Ok(Json.toJson(cat))
       case None => NotFound
     }
   }
 
   def showAll(): Action[AnyContent] = Action { implicit request =>
-    if (products.isEmpty) {
+    if (categories.isEmpty) {
       NoContent
     }
     else {
-      Ok(Json.toJson(products))
+      Ok(Json.toJson(categories))
     }
   }
 
   def update(id: Long): Action[AnyContent] = Action { implicit request =>
-    val foundProduct = products.find(_.id == id)
-    foundProduct match {
-      case Some(product) =>
+    val foundCategory = categories.find(_.id == id)
+    foundCategory match {
+      case Some(cat) =>
         val jsonBody = request.body.asJson
-        val productJson: Option[ProductDto] = jsonBody.flatMap(
-          Json.fromJson[ProductDto](_).asOpt
+        val catJson: Option[CategoryDto] = jsonBody.flatMap(
+          Json.fromJson[CategoryDto](_).asOpt
         )
 
-        productJson match {
-          case Some(productDto) =>
-            products -= product
-            val newProduct = Product(id, productDto.name, productDto.quantity, productDto.quantity, productDto.price)
-            products += newProduct
-            Ok(Json.toJson(newProduct))
+        catJson match {
+          case Some(catDto) =>
+            categories -= cat
+            val newCategory = Category(id, catDto.name, catDto.description)
+            categories += newCategory
+            Ok(Json.toJson(newCategory))
           case None =>
             BadRequest
         }
@@ -82,10 +82,10 @@ class CategoryController @Inject()(val controllerComponents: ControllerComponent
   }
 
   def delete(id: Long): Action[AnyContent] = Action { implicit request =>
-    val product = products.find(_.id == id)
-    product match {
-      case Some(product) =>
-        products -= product
+    val cat = categories.find(_.id == id)
+    cat match {
+      case Some(cat) =>
+        categories -= cat
         Ok
       case None => NotFound
     }
