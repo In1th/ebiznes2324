@@ -1,0 +1,25 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# Product Controller
+GET     /product             controllers.ProductController.showAll()
+GET     /product/:id         controllers.ProductController.showById(id: Long)
+POST    /product             controllers.ProductController.add()
+PUT     /product/:id         controllers.ProductController.update(id: Long)
+DELETE  /product/:id         controllers.ProductController.delete(id: Long)
+
+# Cart Controller
+GET     /cart             controllers.CartController.showAll()
+GET     /cart/:id         controllers.CartController.showById(id: Long)
+POST    /cart             controllers.CartController.add()
+PUT     /cart/:id         controllers.CartController.update(id: Long)
+DELETE  /cart/:id         controllers.CartController.delete(id: Long)
+
+# Category Controller
+GET     /category             controllers.CategoryController.showAll()
+GET     /category/:id         controllers.CategoryController.showById(id: Long)
+POST    /category             controllers.CategoryController.add()
+PUT     /category/:id         controllers.CategoryController.update(id: Long)
+DELETE  /category/:id         controllers.CategoryController.delete(id: Long)
