@@ -51,7 +51,7 @@ suspend fun main() {
 
         println("Msg: ${message.author?.tag}: ${message.content}")
 
-        message.channel.createMessage("Sex")
+        message.channel.createMessage("Wysłano")
     }
 
     embeddedServer(Netty, port = 8080) {
