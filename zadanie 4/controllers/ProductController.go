@@ -79,11 +79,11 @@ func (w *ProductController) Update(c echo.Context) error {
 	}
 
 	if err := c.Bind(&product); err != nil {
-		return c.JSON(http.StatusBadRequest, "Error")
+		return c.JSON(http.StatusBadRequest, "Bind Error")
 	}
 
 	if validationErr := validate.Struct(&product); validationErr != nil {
-		return c.JSON(http.StatusBadRequest, "Error")
+		return c.JSON(http.StatusBadRequest, "Validation Error: "+validationErr.Error())
 	}
 
 	currentProduct.Price = product.Price
