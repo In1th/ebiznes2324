@@ -22,6 +22,7 @@ func main() {
 
 	routes.SetupCruds(e,
 		&controllers.ProductController{},
+		&controllers.CartController{},
 	)
 	e.Logger.Fatal(e.Start(":1323"))
 }
