@@ -58,7 +58,6 @@ app.post('/auth/signin', async (req, res) => {
 
 app.post('/auth/signup', async (req, res) => {
     const {username, password} = req.body;
-    console.log(username, password);
 
     if (!username || !password) {
         res.status(400).json({
