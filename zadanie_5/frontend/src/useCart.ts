@@ -9,10 +9,10 @@ export const CartContext = createContext({
 
 export const useCart = () => {
     const {cartItems, setCartItems} = useContext(CartContext);
-    const [totalCost, setTotal] = useState(0);
+    const [totalCost, setTotalCost] = useState(0);
 
     useEffect(() => {
-        setTotal(cartItems.reduce((acc, pr) => acc + pr.Price * pr.Quantity, 0));
+        setTotalCost(cartItems.reduce((acc, pr) => acc + pr.Price * pr.Quantity, 0));
     }, [cartItems]);
 
     return {

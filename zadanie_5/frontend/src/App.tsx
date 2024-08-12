@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./Root";
 import { Product } from "./types";
@@ -31,9 +31,12 @@ export const App = () => {
         fetchData();
     }, []);
 
+    const cartCtx = useMemo(() => ({ cartItems: items, setCartItems: setItems }), []);
+    const productsCtx = useMemo(() => ({products}), []);
+
     return (
-        <CartContext.Provider value={{ cartItems: items, setCartItems: setItems }}>
-            <ProductsContext.Provider value={{products}}>
+        <CartContext.Provider value={cartCtx}>
+            <ProductsContext.Provider value={productsCtx}>
                 <main>
                     <RouterProvider router={router} />
                 </main>

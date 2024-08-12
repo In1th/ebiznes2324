@@ -17,7 +17,7 @@ export const Products = () => {
                 }
             });
             const data = res.data as Product[];
-            setProducts(data.sort((a, b) => a.Id.localeCompare(b.Id)));
+            setProducts(data.toSorted((a, b) => a.Id.localeCompare(b.Id)));
         }
 
         fetchData();
