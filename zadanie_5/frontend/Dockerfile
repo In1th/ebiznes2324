@@ -1,13 +1,18 @@
 FROM node:18-alpine
 
-WORKDIR /var/frontend
-COPY package*.json .
+WORKDIR /front
 
-RUN npm ci
+COPY package.json .
+
+RUN npm config set registry https://registry.npmjs.org/
+RUN npm install --verbose
+
+RUN npm i -g serve
 
 COPY . .
 
+RUN npm run build
 
-EXPOSE 5173
+EXPOSE 80
 
-ENTRYPOINT [ "npm", "run", "dev" ]
+CMD [ "serve", "-s", "dist", "-p", "80" ]
