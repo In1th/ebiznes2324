@@ -34,7 +34,7 @@ env:
   AWS_REGION: eu-north-1                
   ECR_REPOSITORY: ebiz/cloud         
   ECS_SERVICE: ebiz     
-  ECS_CLUSTER: ebiz_final                
+  ECS_CLUSTER: ebiz-final                
   ECS_TASK_DEFINITION: .github/workflows/front-definition.json
   CONTAINER_NAME: front
 
