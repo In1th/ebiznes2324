@@ -1,0 +1,9 @@
+3.0 Należy dodać litera do odpowiedniego kodu aplikacji serwerowej w hookach gita [link](https://github.com/In1th/ebiznes2324/commit/36ba9978c6b6661611d731b1b826fb3733b7bccf)
+
+3.5 Należy wyeliminować wszystkie bugi w kodzie w Sonarze (kod aplikacji serwerowej) [link](https://github.com/In1th/ebiznes2324/commit/6e09a72a3aaae5d5180a3fe12d8165f96bde2e1c)
+
+4.0 Należy wyeliminować wszystkie zapaszki w kodzie w Sonarze (kod aplikacji serwerowej) [link](https://github.com/In1th/ebiznes2324/commit/6e09a72a3aaae5d5180a3fe12d8165f96bde2e1c)
+
+4.5 Należy wyeliminować wszystkie podatności oraz błędy bezpieczeństwa w kodzie w Sonarze (kod aplikacji serwerowej) [link](https://github.com/In1th/ebiznes2324/commit/6e09a72a3aaae5d5180a3fe12d8165f96bde2e1c)
+
+5.0 Należy wyeliminować wszystkie błędy oraz zapaszki w kodzie aplikacji klienckiej [link](https://github.com/In1th/ebiznes2324/commit/8df5d6fb63ff120d7e47190e14414a54aeb5ae13)

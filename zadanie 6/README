@@ -1,0 +1,13 @@
+3.0 Należy stworzyć 20 przypadków testowych w CypressJS lub Selenium (Kotlin, Python, Java, JS, Go, Scala) [link](https://github.com/In1th/ebiznes2324/commit/0ca5aff350e7f54324ef0aa02949877d60e554a6)
+
+3.5 Należy rozszerzyć testy funkcjonalne, aby zawierały minimum 50 asercji [link](https://github.com/In1th/ebiznes2324/commit/0ca5aff350e7f54324ef0aa02949877d60e554a6)
+
+To nie jest Cypress a Playwright, ale polac go sobie zobaczyć bo w mojej opinii jest od Cypressa lepszy i oferuje więcej out-of-the-box, np. obsługa async awaitów, iframów itp
+
+---
+
+4.0 Należy stworzyć testy jednostkowe do wybranego wcześniejszego projektu z minimum 50 asercjami
+
+4.5 Należy dodać testy API, należy pokryć wszystkie endpointy z minimum jednym scenariuszem negatywnym per endpoint
+
+5.0 Należy uruchomić testy funkcjonalne na Browserstacku
