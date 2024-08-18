@@ -4,10 +4,9 @@ WORKDIR /front
 
 COPY package.json .
 
-RUN npm config set registry https://registry.npmjs.org/
-RUN npm install --verbose
-
-RUN npm i -g serve
+RUN npm config set registry https://registry.npmjs.org/ \
+&& npm install --verbose --ignore-scripts \
+&& npm i --ignore-scripts -g serve
 
 COPY . .
 
