@@ -1,0 +1,14 @@
+3.0 Należy stworzyć odpowiednie instancje po stronie chmury na dockerze
+(brak commitu, ale to AWS)
+
+3.5 Stworzyć odpowiedni pipeline w Github Actions do budowania aplikacji [link](https://github.com/In1th/ebiznes2324/commit/c42eec58b950bc0c533c2b77fe5b9e24774415b4)
+
+W tym kroku AWS uznaje że się timeoutuje, ale image z zadania 5 są w elastic container registry.
+
+---
+
+4.0 Dodać notyfikację mailową o zbudowaniu aplikacji
+
+4.5 Dodać krok z deploymentem aplikacji serwerowej oraz klienckiej na chmurę
+
+5.0 Dodać uruchomienie regresyjnych testów automatycznych (funkcjonalnych) jako krok w Actions

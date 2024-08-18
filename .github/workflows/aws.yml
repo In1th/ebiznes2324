@@ -32,7 +32,8 @@ on:
 
 env:
   AWS_REGION: eu-north-1                
-  ECR_REPOSITORY: ebiz/cloud         
+  ECR_REPOSITORY_FRONT: ebiz/cloud         
+  ECR_REPOSITORY_BACK: ebiz/backend         
   ECS_SERVICE: ebiz     
   ECS_CLUSTER: ebiz-final                
   ECS_TASK_DEFINITION: .github/workflows/front-definition.json
@@ -62,8 +63,8 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push image to Amazon ECR
-      id: build-image
+    - name: Build, tag, and push front image to Amazon ECR
+      id: build-image-front
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
@@ -72,9 +73,23 @@ jobs:
         # push it to ECR so that it can
         # be deployed to ECS.
         cd zadanie_5/frontend
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_FRONT:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY_FRONT:$IMAGE_TAG
+        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY_FRONT:$IMAGE_TAG" >> $GITHUB_OUTPUT
+    
+    - name: Build, tag, and push backend image to Amazon ECR
+      id: build-image-back
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        # Build a docker container and
+        # push it to ECR so that it can
+        # be deployed to ECS.
+        cd zadanie_5/frontend
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_BACK:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY_BACK:$IMAGE_TAG
+        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY_BACK:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def

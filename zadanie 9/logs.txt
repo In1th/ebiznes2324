@@ -1,0 +1,6 @@
+user: 147420546823356416 | scenario: 2.0 | msg: m | res You have those events in next week: 
+🪪 Event
+📝 Description
+📆 at Now
+Do you need anything else?
+---
