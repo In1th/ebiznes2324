@@ -31,8 +31,8 @@ export const App = () => {
         fetchData();
     }, []);
 
-    const cartCtx = useMemo(() => ({ cartItems: items, setCartItems: setItems }), []);
-    const productsCtx = useMemo(() => ({products}), []);
+    const cartCtx = useMemo(() => ({ cartItems: items, setCartItems: setItems }), [items]);
+    const productsCtx = useMemo(() => ({products}), [products]);
 
     return (
         <CartContext.Provider value={cartCtx}>

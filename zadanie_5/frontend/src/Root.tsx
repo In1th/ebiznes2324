@@ -9,7 +9,7 @@ function Root() {
   return (
     <>
       <nav>
-          <Link to="/">EBiznes</Link>
+        <Link to="/">EBiznes</Link>
         <Link to="cart">Cart {items.length}</Link>
       </nav>
       <Products/>
